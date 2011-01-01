@@ -1,5 +1,5 @@
 <?php
-if (!class_exists('XML_Unserializer')) {
+if (!class_exists('XML_Serializer')) {
 	set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/PEAR/');
 	require_once('XML/Serializer.php');
 }
