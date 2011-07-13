@@ -1,9 +1,12 @@
 <?php
+require('config.php');
+
 if (!class_exists('XML_Serializer')) {
 	set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/PEAR/');
 	require_once('XML/Serializer.php');
 }
-$statuses = json_decode(file_get_contents('http://graph.facebook.com/deeeki/feed'));
+$feed_url = 'https://graph.facebook.com/deeeki/feed?' . http_build_query(array('access_token' => ACCESS_TOKEN), '', '&');
+$statuses = json_decode(file_get_contents($feed_url));
 
 if (!$statuses) {
 	exit;
