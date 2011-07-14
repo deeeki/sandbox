@@ -5,6 +5,7 @@ require 'rss'
 
 #rss is already exists. http://www.zusaar.com/index.rss
 ZUSAAR_API = 'http://www.zusaar.com/api/event/'
+ZUSAAR_URL = 'http://www.zusaar.com/event/search/'
 
 json = JSON.parse(URI.parse(ZUSAAR_API).read)
 
@@ -15,7 +16,7 @@ rss = RSS::Maker.make('1.0') do |maker|
 	maker.channel.about = 'http://' + ENV['HTTP_HOST'] + ENV['REQUEST_URI']
 	maker.channel.title = 'Zusaar 新着イベント'
 	maker.channel.description = 'Zusaar 新着イベント'
-	maker.channel.link = 'http://' + ENV['HTTP_HOST'] + '/'
+	maker.channel.link = ZUSAAR_URL
 
 	json['event'].each do |e|
 		maker.items.new_item do |item|
