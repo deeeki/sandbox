@@ -1,18 +1,20 @@
 <?php
+// useful to set "auto_prepend_file" on php.ini
+
 /**
- * debug with library
+ * dump debug with "dBug" library
  */
 if (!function_exists('d')) {
+	if (!class_exists('dBug', false)) {
+		require_once(dirname(__FILE__) . '/vendor/dBug.php');
+	}
 	function d() {
-		if (!class_exists('dBug', false)) {
-			require_once(dirname(__FILE__) . '/vendors/dBug.php');
-		}
 		foreach (func_get_args() as $v) new dBug($v);
 	}
 }
 
 /**
- * debug preformatted var_dump
+ * shorthand "var_dump" with decoration
  */
 if (!function_exists('v')) {
 	function v() {
