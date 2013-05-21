@@ -1,3 +1,31 @@
 body {
   font-family: 'しねきゃぷしょん', cinecaption;
 }
+
+.content > p {
+  margin: 0;
+}
+
+#preso, .slide {
+  background-color: #000;
+  color: #fff;
+}
+
+.slide {
+  margin: 0;
+  width: 1048px;
+  border: none;
+
+  /*background: -moz-linear-gradient(left top, #000,*/
+    /*#111 30%,*/
+    /*#222 50%,*/
+    /*#444 70%,*/
+    /*#666*/
+  /*);*/
+  /*background: -webkit-gradient(linear, left top, left bottom, from(#000),*/
+    /*color-stop(0.3, #111),*/
+    /*color-stop(0.5, #222),*/
+    /*color-stop(0.7, #444),*/
+    /*to(#666)*/
+  /*);*/
+}
