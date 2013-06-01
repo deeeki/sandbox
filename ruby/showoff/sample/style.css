@@ -16,6 +16,7 @@ body {
   width: 1048px;
   border: none;
 
+  /* gradient style takes too much time to rendering pdf */
   /*background: -moz-linear-gradient(left top, #000,*/
     /*#111 30%,*/
     /*#222 50%,*/
@@ -28,4 +29,32 @@ body {
     /*color-stop(0.7, #444),*/
     /*to(#666)*/
   /*);*/
+}
+
+.smbullets > ul, .smbullets ul ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.smbullets ul li {
+  text-align: center;
+}
+
+.subsection h1 {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 4em;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
 }
