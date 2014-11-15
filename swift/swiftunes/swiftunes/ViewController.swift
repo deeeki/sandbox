@@ -29,9 +29,9 @@ class ViewController: UIViewController {
         // Now escape anything else that isn't URL-friendly
         var escapedSearchTerm = itunesSearchTerm.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
         var urlPath = "https://itunes.apple.com/search?term=\(escapedSearchTerm)&media=software"
-        var url: NSURL = NSURL(string: urlPath)
+        var url: NSURL = NSURL(string: urlPath)!
         var request: NSURLRequest = NSURLRequest(URL: url)
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)
+        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)!
         
         println("Search iTunes API at URL \(url)")
         
