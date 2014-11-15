@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 
     @IBOutlet var appsTableView : UITableView?
 
+    var data: NSMutableData = NSMutableData()
+    var tableData: NSArray = NSArray()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
