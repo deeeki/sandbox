@@ -41,5 +41,29 @@ class ViewController: UIViewController {
         
         connection.start()
     }
+
+    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
+        // Recieved a new request, clear out the data object
+        self.data = NSMutableData()
+    }
+
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+        // Append the recieved chunk of data to our data object
+        self.data.appendData(data)
+    }
+
+    func connectionDidFinishLoading(connection: NSURLConnection!) {
+        // Request complete, self.data should now hold the resulting info
+        // Convert the retrieved data in to an object through JSON deserialization
+        var err: NSError
+        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data,
+            options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+
+        if jsonResult.count > 0 && jsonResult["results"].count > 0 {
+            var results: NSArray = jsonResult["results"] as NSArray
+            self.tableData = results
+            self.appsTableView.reloadData()
+        }
+    }
 }
 
