@@ -1,25 +1,34 @@
-//
-//  ViewController.swift
-//  sample
-//
-//  Created by deeeki on 2/25/15.
-//  Copyright (c) 2015 deeeki. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UICollectionViewController {
+    
+    var products = ["a", "b", "c"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return products.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as UICollectionViewCell
+        cell.backgroundColor = UIColor.grayColor()
+        let label = UILabel(frame: CGRectMake(0, 0, 50, 50))
+        label.text = products[indexPath.row]
+        cell.addSubview(label)
+        return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let viewController = ProductsShowViewController()
+        viewController.product = products[indexPath.row]
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
-
