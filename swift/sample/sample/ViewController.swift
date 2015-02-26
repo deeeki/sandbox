@@ -8,7 +8,7 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
 
-        let cartButton = UIBarButtonItem(title: "cart", style: .Plain, target: self, action: "showCart:")
+        let cartButton = UIBarButtonItem(image: UIImage(named: "cart"), style: .Plain, target: self, action: "showCart:")
         navigationItem.rightBarButtonItem = cartButton
     }
     
