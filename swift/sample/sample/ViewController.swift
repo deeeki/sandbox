@@ -7,6 +7,9 @@ class ViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+
+        let cartButton = UIBarButtonItem(title: "cart", style: .Plain, target: self, action: "showCart:")
+        navigationItem.rightBarButtonItem = cartButton
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,6 +32,11 @@ class ViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let viewController = ProductsShowViewController()
         viewController.product = products[indexPath.row]
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showCart(sender: AnyObject) {
+        let viewController = CartsShowViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
