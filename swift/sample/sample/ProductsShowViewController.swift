@@ -25,6 +25,14 @@ class ProductsShowViewController: UIViewController {
     }
 
     func add(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if var products = defaults.objectForKey("cart") as? [String] {
+            products.append(product)
+            defaults.setObject(products, forKey: "cart")
+        }
+        else {
+            defaults.setObject([product], forKey: "cart")
+        }
         navigationController?.popViewControllerAnimated(true)
     }
 }
