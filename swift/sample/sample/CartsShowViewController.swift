@@ -11,6 +11,9 @@ class CartsShowViewController: UIViewController, UITableViewDelegate, UITableVie
         let defaults = NSUserDefaults.standardUserDefaults()
         products = defaults.objectForKey("cart") as [String]
 
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: "close:")
+        navigationItem.leftBarButtonItem = closeButton
+
         let tableView = UITableView(frame: view.frame)
         tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -30,5 +33,9 @@ class CartsShowViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel.text = products[indexPath.row]
         return cell
+    }
+
+    func close(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

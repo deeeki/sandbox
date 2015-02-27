@@ -37,6 +37,6 @@ class ViewController: UICollectionViewController {
 
     func showCart(sender: AnyObject) {
         let viewController = CartsShowViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        presentViewController(UINavigationController(rootViewController: viewController), animated: true, completion: nil)
     }
 }
