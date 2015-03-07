@@ -1,8 +1,10 @@
 import UIKit
+import Alamofire
+import Alamofire_SwiftyJSON
 
 class ViewController: UICollectionViewController {
     
-    var products = ["a", "b", "c"]
+    var products: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -10,6 +12,15 @@ class ViewController: UICollectionViewController {
 
         let cartButton = UIBarButtonItem(image: UIImage(named: "cart"), style: .Plain, target: self, action: "showCart:")
         navigationItem.rightBarButtonItem = cartButton
+
+        Alamofire.request(.GET, "http://localhost:3000/products.json")
+            .responseSwiftyJSON { (request, response, json, error) in
+                self.products.removeAll(keepCapacity: false)
+                for (key, subJson) in json {
+                    self.products.append(Product(subJson).name)
+                }
+                self.collectionView.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
