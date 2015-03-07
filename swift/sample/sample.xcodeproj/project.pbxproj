@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2100C8E41A9FAC8200EB0FDC /* CartsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100C8E31A9FAC8200EB0FDC /* CartsShowViewController.swift */; };
+		213938DF1AA283B200B4A956 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213938DE1AA283B200B4A956 /* Product.swift */; };
 		21C280571A9DE67F007FCE46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C280561A9DE67F007FCE46 /* AppDelegate.swift */; };
 		21C280591A9DE67F007FCE46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C280581A9DE67F007FCE46 /* ViewController.swift */; };
 		21C2805E1A9DE67F007FCE46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21C2805D1A9DE67F007FCE46 /* Images.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		16A1013C212B8FA040493875 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2100C8E31A9FAC8200EB0FDC /* CartsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartsShowViewController.swift; sourceTree = "<group>"; };
+		213938DE1AA283B200B4A956 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		21C280511A9DE67F007FCE46 /* sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C280551A9DE67F007FCE46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21C280561A9DE67F007FCE46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				21C280561A9DE67F007FCE46 /* AppDelegate.swift */,
 				21C280581A9DE67F007FCE46 /* ViewController.swift */,
+				213938DE1AA283B200B4A956 /* Product.swift */,
 				21C280761A9DE967007FCE46 /* ProductsShowViewController.swift */,
 				2100C8E31A9FAC8200EB0FDC /* CartsShowViewController.swift */,
 				21C2805D1A9DE67F007FCE46 /* Images.xcassets */,
@@ -287,6 +290,7 @@
 			files = (
 				21C280771A9DE968007FCE46 /* ProductsShowViewController.swift in Sources */,
 				2100C8E41A9FAC8200EB0FDC /* CartsShowViewController.swift in Sources */,
+				213938DF1AA283B200B4A956 /* Product.swift in Sources */,
 				21C280591A9DE67F007FCE46 /* ViewController.swift in Sources */,
 				21C280571A9DE67F007FCE46 /* AppDelegate.swift in Sources */,
 			);
