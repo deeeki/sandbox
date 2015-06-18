@@ -10,6 +10,6 @@ defmodule News.API.ArticleView do
   end
 
   def render("article.json", %{article: article}) do
-    %{id: article.id}
+    %{id: article.id, title: article.title, url: article.url}
   end
 end
