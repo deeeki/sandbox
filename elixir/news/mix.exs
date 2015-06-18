@@ -31,7 +31,7 @@ defmodule News.Mixfile do
   defp deps do
     [{:phoenix, "~> 0.13.1"},
      {:phoenix_ecto, "~> 0.4"},
-     {:mariaex, ">= 0.0.0"},
+     {:mariaex, ">= 0.0.0", override: true},
      {:phoenix_html, "~> 1.0"},
      {:phoenix_live_reload, "~> 0.4", only: :dev},
      {:cowboy, "~> 1.0"}]
