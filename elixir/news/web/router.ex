@@ -19,8 +19,9 @@ defmodule News.Router do
     resources "/articles", ArticleController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", News do
-  #   pipe_through :api
-  # end
+  scope "/api", News do
+    pipe_through :api
+
+    resources "/articles", API.ArticleController
+  end
 end
