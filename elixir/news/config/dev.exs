@@ -29,6 +29,7 @@ config :logger, :console, format: "[$level] $message\n"
 # Configure your database
 config :news, News.Repo,
   adapter: Ecto.Adapters.MySQL,
+  hostname: "127.0.0.1",
   username: "root",
   password: "",
   database: "news_dev",
