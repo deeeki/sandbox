@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+Bundler.require(:default)
+require 'csv'
+
+URL = 'https://event.shadowverse.jp/eventsupport/'
+
+AGENT = Mechanize.new
+
+event_urls = []
+page = AGENT.get(URL)
+loop do
+  event_urls << page.links.select{|l| l.href.start_with?('/eventsupport/detail') }.map{|l| l.resolved_uri.to_s }
+
+  next_link = page.at('div.next > a')
+  if next_link
+    page = AGENT.get(URL + next_link['href'])
+  else
+    break
+  end
+end
+
+events = event_urls.flatten.map do |url|
+  page = AGENT.get(url)
+  shop = page.at('div.title-header > div.shop').text.strip
+  date = page.at('div.date > div.text').text.strip
+  title = page.at('div.event > div.text').text.strip
+  place = page.at('div.shop > div.text').text.strip
+  info = page.at('div.event-info > div.text').text.strip
+  emblem = info.scan(%r[■参加賞エンブレム\s*(.*)\s*]).first&.first&.strip
+  [date, place, emblem, url, shop, title]
+end
+
+csv_str = CSV.generate do |csv|
+  events.each{|e| csv << e }
+end
+File.write("es_#{Date.today.strftime('%Y%m%d')}.csv", csv_str)
