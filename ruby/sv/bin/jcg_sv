@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+unless ARGV[0]
+  puts 'Usage: jcg_sv URL'
+  exit
+end
+
+require 'bundler/setup'
+Bundler.require(:default)
+require 'csv'
+
+TOUR     = 'https://sv.j-cg.com/compe/view/tour/'
+GAMELIST = 'https://sv.j-cg.com/compe/view/gamelist/'
+MATCH    = 'https://sv.j-cg.com/compe/view/match/'
+RESULT   = 'https://sv.j-cg.com/compe/view/result/'
+
+AGENT = Mechanize.new
+
+players = {}
+tour_id = ARGV[0].scan(/\d+/).first
+
+result_page = AGENT.get(RESULT + tour_id)
+result_page.search('a.hover-blue').each do |player|
+  player_id = player['href'].scan(/\d+/).first
+  players[player_id] = {}
+end
+
+tour_page = AGENT.get(GAMELIST + tour_id)
+matches = tour_page.links.map(&:href).select{|u| u.start_with?(MATCH) }
+matches.sort.slice(0..7).each do |match_url|
+  page = AGENT.get(match_url)
+  page.search('div.team_wrap').each do |team|
+    player = team.at('a.hover-blue')
+    player_id = player['href'].scan(/\d+/).first
+    player_name = player.text
+    decks = team.search('a[target="_svp"]').map{|e| e['href'] }.map{|url|
+      url.sub(%r[deckbuilder/create/\d\?hash=], 'deck/')
+    }
+    players[player_id] = {
+      name: player_name,
+      decks: decks,
+    }
+  end
+end
+
+csv_str = CSV.generate do |csv|
+  players.each do |id, player|
+    csv << [id, player[:name], player[:decks].first, player[:decks].last]
+  end
+end
+File.write("#{tour_id}.csv", csv_str)
+
+players.each{|k, p| p[:decks].each{|d| system "open #{d}" } }
