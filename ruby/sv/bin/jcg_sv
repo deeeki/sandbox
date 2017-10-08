@@ -35,7 +35,7 @@ matches.sort.slice(0..7).each do |match_url|
     player_name = player.text
     decks = team.search('a[target="_svp"]').map{|e| e['href'] }.map{|url|
       url.sub(%r[deckbuilder/create/\d\?hash=], 'deck/')
-    }
+    }.sort
     players[player_id] = {
       name: player_name,
       decks: decks,
