@@ -12,6 +12,6 @@ abort "Usage: #{__FILE__} worksheet_title [files_path]" unless title
 path ||= `pwd`
 
 cells = [%w[Name Ext Size MTime]]
-cells += Pathname.glob("#{path}/*.*").sort.map{|file| [file.basename('.*'), file.extname, file.size, file.mtime] }
+cells += Pathname.glob("#{path}/*").sort.map{|file| [file.basename('.*'), file.extname, file.size, file.mtime] }
 
 GoogleDriveSpreadsheet.write(title, cells)
