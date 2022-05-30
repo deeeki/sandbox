@@ -11,7 +11,14 @@ abort "Usage: #{__FILE__} worksheet_title [files_path]" unless title
 
 path ||= `pwd`
 
-cells = [%w[Name Ext Size MTime]]
-cells += Pathname.glob("#{path}/*").sort.map{|file| [file.basename('.*'), file.extname, file.size, file.mtime] }
+cells = [%w[Name # Size MTime]]
+cells += Pathname.glob("#{path}/*").sort.map do |pathname|
+  if pathname.directory?
+    last = pathname.glob('./*').sort.last
+    [pathname.basename, last.basename('.*'), last.size, last.mtime]
+  else
+    [pathname.basename('.*'), nil, pathname.size, pathname.mtime]
+  end
+end
 
 GoogleDriveSpreadsheet.write(title, cells)
